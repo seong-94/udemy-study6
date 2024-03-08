@@ -47,7 +47,7 @@ function App() {
   }
 
   function handleRemovePlace() {
-    setIsOpen();
+    setIsOpen(false);
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
@@ -55,7 +55,7 @@ function App() {
 
   return (
     <>
-      <Modal ref={modal}>
+      <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
         <DeleteConfirmation onCancel={handleStopRemovePlace} onConfirm={handleRemovePlace} />
       </Modal>
 
