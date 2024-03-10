@@ -52,7 +52,7 @@ function App() {
         place.id !== selectedPlace.current;
       });
     });
-    setIsOpen(false);
+    // setIsOpen(false);
 
     const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
     localStorage.setItem(
