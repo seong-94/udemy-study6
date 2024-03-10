@@ -72,3 +72,32 @@ function MyComponent() {
 
 export default MyComponent;
 ```
+
+# 190
+
+useEffect와 setInterval을 함께 사용할 때, 컴포넌트가 언마운트된 후에도 setInterval에 의해 상태 업데이트가 시도되어 메모리 누수가 발생할 수 있습니다. 이를 방지하기 위해서는 컴포넌트가 언마운트될 때 setInterval을 정리(clean-up)해야 합니다. 아래 예시와 같이 useEffect 내에서 clearInterval을 사용하여 이를 처리할 수 있습니다.
+
+# useEffect와 setInterval을 사용하여 불필요한 상태 업데이트 방지하기
+
+`useEffect`와 `setInterval`을 사용할 때, 컴포넌트 언마운트 후에도 상태 업데이트가 시도되는 것을 방지하는 예시입니다.
+
+```jsx
+import { useState, useEffect } from "react";
+
+function TimerComponent() {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+
+    // 컴포넌트 언마운트 시 clearInterval을 호출하여 메모리 누수 방지
+    return () => clearInterval(intervalId);
+  }, []); // 빈 의존성 배열을 사용하여 컴포넌트 마운트 시에만 setInterval 실행
+
+  return <div>Seconds: {seconds}</div>;
+}
+
+export default TimerComponent;
+```
