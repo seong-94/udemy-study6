@@ -149,3 +149,13 @@ chosenCount 가 변경 될 때에 Count 컴포넌트 인스턴스가 삭제 되�
 useEffect 를 사용한것 과 다르게 컴포넌트 내의 함수가 한번만 실행한다는데 좀더 공부할 필요가 있어보임
 
 ---
+
+# Rules of Hooks
+
+![alt text](image.png)
+
+1. 훅은 기본적으로 컴포넌트 function 안에서 사용해야한다,
+
+2. if 나 loop 와 같은 안에 선언이 불가능하다.
+
+3. use라는 이름을 시작으로 해야 리액트 프로젝트 내에서 hook 으로 인식받는다.
